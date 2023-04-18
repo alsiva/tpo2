@@ -1,9 +1,3 @@
-import org.apache.commons.csv.CSVFormat;
-import org.apache.commons.csv.CSVPrinter;
-
-import java.io.IOException;
-import java.io.Writer;
-
 public class Cot {
 
     private final Sin sin;
@@ -25,15 +19,4 @@ public class Cot {
         }
         return cosVal / sin.sin(x, eps);
     }
-
-    public double writeResultToCSV(double x, double eps, Writer out) {
-        double res = cot(x, eps);
-        try (CSVPrinter printer = CSVFormat.DEFAULT.print(out)) {
-            printer.printRecord(x, res);
-        } catch (IOException e) {
-            System.out.println("Wrong filename");
-        }
-        return res;
-    }
-
 }

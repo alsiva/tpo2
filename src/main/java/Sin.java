@@ -1,9 +1,3 @@
-import org.apache.commons.csv.CSVFormat;
-import org.apache.commons.csv.CSVPrinter;
-
-import java.io.IOException;
-import java.io.Writer;
-
 public class Sin {
     public double sin(double x, double eps) {
         if (Double.POSITIVE_INFINITY == x || Double.NEGATIVE_INFINITY == x) {
@@ -36,15 +30,5 @@ public class Sin {
         if (Math.abs(result) > 1) return Double.NaN;
         if (Math.abs(result) < eps) return 0;
         return result;
-    }
-
-    public double writeResultToCSV(double x, double eps, Writer out) {
-        double res = sin(x, eps);
-        try (CSVPrinter printer = CSVFormat.DEFAULT.print(out)) {
-            printer.printRecord(x, res);
-        } catch (IOException e) {
-            System.out.println("Wrong filename");
-        }
-        return res;
     }
 }

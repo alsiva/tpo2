@@ -1,9 +1,3 @@
-import org.apache.commons.csv.CSVFormat;
-import org.apache.commons.csv.CSVPrinter;
-
-import java.io.IOException;
-import java.io.Writer;
-
 public class Cos {
 
     private final Sin sin;

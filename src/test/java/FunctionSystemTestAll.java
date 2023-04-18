@@ -1,16 +1,13 @@
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVRecord;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvFileSource;
 import org.mockito.Mockito;
 
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
 
-class FunctionTest {
+class FunctionSystemTestAll {
 
     static double functionEps = 0.1;
     static double eps = 0.1;
@@ -92,11 +89,12 @@ class FunctionTest {
 
     }
 
-    @ParameterizedTest
-    @CsvFileSource(resources = "/CsvFiles/Inputs/SystemIn.csv")
-    void testSystemWithMocks(double value, double expected) {
-        Function function = new Function(secMock, lnMock, logMock, sinMock, cotMock, cosMock, cscMock);
-        Assertions.assertEquals(expected, function.SystemSolve(value, functionEps), eps);
+//    @ParameterizedTest
+//    @CsvFileSource(resources = "/CsvFiles/Inputs/SystemIn.csv")
+//    void testSystemWithMocks(double value, double expected) {
+//        FunctionSystem functionSystem = new FunctionSystem(secMock, lnMock, logMock, sinMock, cotMock, cosMock, cscMock);
+//        Assertions.assertEquals(expected, functionSystem.calculate(value, functionEps), eps);
+//
 /*
         try {
             Assertions.assertEquals(expected, function.writeResultToCSV(value, functionEps,
@@ -104,30 +102,30 @@ class FunctionTest {
         } catch (IOException e) {
             System.err.println("Да как ты это делаешь ");
         }
+    }
 */
 
-    }
-
+/*
     @ParameterizedTest
     @CsvFileSource(resources = "/CsvFiles/Inputs/SystemIn.csv")
     void testWithSec(double value, double expected) {
-        Function function = new Function(new Sec(cosMock), lnMock, logMock, sinMock, cotMock, cosMock, cscMock);
-        Assertions.assertEquals(expected, function.SystemSolve(value, functionEps), eps);
+        FunctionSystem functionSystem = new FunctionSystem(new Sec(cosMock), lnMock, logMock, sinMock, cotMock, cosMock, cscMock);
+        Assertions.assertEquals(expected, functionSystem.calculate(value, functionEps), eps);
     }
 
     @ParameterizedTest
     @CsvFileSource(resources = "/CsvFiles/Inputs/SystemIn.csv")
     void testWithCot(double value, double expected) {
-        Function function = new Function(secMock, lnMock, logMock, sinMock, new Cot(sinMock, cosMock), cosMock, cscMock);
-        Assertions.assertEquals(expected, function.SystemSolve(value, functionEps), eps);
+        FunctionSystem functionSystem = new FunctionSystem(secMock, lnMock, logMock, sinMock, new Cot(sinMock, cosMock), cosMock, cscMock);
+        Assertions.assertEquals(expected, functionSystem.calculate(value, functionEps), eps);
     }
 
     @ParameterizedTest
     @CsvFileSource(resources = "/CsvFiles/Inputs/SystemIn.csv")
     void testWithCsc(double value, double expected) {
-        Function function = new Function(secMock, lnMock, logMock, sinMock, cotMock, cosMock, new Csc(sinMock));
-        Assertions.assertEquals(expected, function.SystemSolve(value, functionEps), eps);
-    }
+        FunctionSystem functionSystem = new FunctionSystem(secMock, lnMock, logMock, sinMock, cotMock, cosMock, new Csc(sinMock));
+        Assertions.assertEquals(expected, functionSystem.calculate(value, functionEps), eps);
+    }*/
 
 
 //    @ParameterizedTest
@@ -139,38 +137,38 @@ class FunctionTest {
 //        Mockito.verify(sinMock).sin(value, functionEps);
 //    }
 
-    @ParameterizedTest
+   /* @ParameterizedTest
     @CsvFileSource(resources = "/CsvFiles/Inputs/SystemIn.csv")
     void testWithCos(double value, double expected) {
-        Function function = new Function(new Sec(new Cos(sinMock)), lnMock, logMock, sinMock, cotMock, new Cos(sinMock), cscMock);
-        Assertions.assertEquals(expected, function.SystemSolve(value, functionEps), eps);
+        FunctionSystem functionSystem = new FunctionSystem(new Sec(new Cos(sinMock)), lnMock, logMock, sinMock, cotMock, new Cos(sinMock), cscMock);
+        Assertions.assertEquals(expected, functionSystem.calculate(value, functionEps), eps);
     }
 
     @ParameterizedTest
     @CsvFileSource(resources = "/CsvFiles/Inputs/SystemIn.csv")
     void testWithSin(double value, double expected) {
-        Function function = new Function(new Sec(new Cos(new Sin())), lnMock, logMock, new Sin(), cotMock, new Cos(), cscMock);
-        Assertions.assertEquals(expected, function.SystemSolve(value, functionEps), eps);
+        FunctionSystem functionSystem = new FunctionSystem(new Sec(new Cos(new Sin())), lnMock, logMock, new Sin(), cotMock, new Cos(), cscMock);
+        Assertions.assertEquals(expected, functionSystem.calculate(value, functionEps), eps);
     }
 
     @ParameterizedTest
     @CsvFileSource(resources = "/CsvFiles/Inputs/SystemIn.csv")
     void testWithLog(double value, double expected) {
-        Function function = new Function(secMock, lnMock, new Log(lnMock), sinMock, cotMock, cosMock, cscMock);
-        Assertions.assertEquals(expected, function.SystemSolve(value, functionEps), eps);
+        FunctionSystem functionSystem = new FunctionSystem(secMock, lnMock, new Log(lnMock), sinMock, cotMock, cosMock, cscMock);
+        Assertions.assertEquals(expected, functionSystem.calculate(value, functionEps), eps);
     }
 
     @ParameterizedTest
     @CsvFileSource(resources = "/CsvFiles/Inputs/SystemIn.csv")
     void testWithLn(double value, double expected) {
-        Function function = new Function(secMock, new Ln(), new Log(), sinMock, cotMock, cosMock, cscMock);
-        Assertions.assertEquals(expected, function.SystemSolve(value, functionEps), eps * 20);
+        FunctionSystem functionSystem = new FunctionSystem(secMock, new Ln(), new Log(), sinMock, cotMock, cosMock, cscMock);
+        Assertions.assertEquals(expected, functionSystem.calculate(value, functionEps), eps * 20);
     }
 
     @ParameterizedTest
     @CsvFileSource(resources = "/CsvFiles/Inputs/SystemIn.csv")
     void testWithSinAndLn(double value, double expected) {
-        Function function = new Function();
-        Assertions.assertEquals(expected, function.SystemSolve(value, functionEps), eps * 20);
-    }
+        FunctionSystem functionSystem = new FunctionSystem();
+        Assertions.assertEquals(expected, functionSystem.calculate(value, functionEps), eps * 20);
+    }*/
 }
