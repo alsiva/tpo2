@@ -3,10 +3,6 @@ public class Cot {
     private final Sin sin;
     private final Cos cos;
 
-    public Cot() {
-        this.sin = new Sin();
-        this.cos = new Cos();
-    }
     public Cot(Sin sin, Cos cos) {
         this.sin = sin;
         this.cos = cos;

@@ -7,7 +7,7 @@ import java.io.IOException;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class LogarithmicFunctionTest {
-    private static final String csvFile = "/test/logarithmic-function.csv";
+    private static final String csvFile = "/test/logarithmic.csv";
 
     @ParameterizedTest
     @CsvFileSource(resources = csvFile)
@@ -21,12 +21,12 @@ public class LogarithmicFunctionTest {
 
     @ParameterizedTest
     @CsvFileSource(resources = csvFile)
-    void mockedTest(double x, double result) {
-//        Ln ln = LnTest.mock(eps);
-//        Log log = LogTest.mock(eps);
-//        LogarithmicFunction logarithmicFunction = new LogarithmicFunction(log, ln);
-//
-//        assertEquals(result, logarithmicFunction.calculate(x, 0.1));
+    void mockedTest(double x, double result) throws IOException {
+        Ln ln = LnTest.mock(0.1);
+        Log log = LogTest.mock(0.1);
+        LogarithmicFunction logarithmicFunction = new LogarithmicFunction(log, ln);
+
+        assertEquals(result, logarithmicFunction.calculate(x, 0.1));
     }
 
 

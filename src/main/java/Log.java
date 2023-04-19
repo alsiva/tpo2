@@ -7,6 +7,8 @@ public class Log {
     }
 
     public double log(double a, double b, double esp) {
+        double first = ln.ln(b, esp);
+        double second = ln.ln(a, esp);
         return ln.ln(b, esp) / ln.ln(a, esp);
     }
 }

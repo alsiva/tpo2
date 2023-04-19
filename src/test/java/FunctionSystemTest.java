@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class FunctionSystemTest {
     private static final double eps = 0.1;
-    private static final String csvFile = "/test/function-system.csv";
+    private static final String csvFile = "/test/system.csv";
 
     @ParameterizedTest
     @CsvFileSource(resources = csvFile)
